@@ -29,7 +29,7 @@
       font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
       letter-spacing: .02em;
     }
-    .wrap{max-width:920px;margin:0 auto;padding:28px 18px 60px;}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 80px;}
     header{padding:18px 6px 10px;}
     .brand{
       font-weight:700;
@@ -40,6 +40,7 @@
     }
     h1{margin:10px 0 6px;font-size:28px;line-height:1.2;}
     .sub{color:var(--muted);margin:0 0 18px;line-height:1.7;}
+
     .panel{
       background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 35%), var(--panel);
       border:1px solid var(--line);
@@ -74,18 +75,112 @@
       cursor:pointer;
     }
     button:hover{filter:brightness(1.05);}
+
     .result{
       margin-top:16px;
-      padding:16px;
-      border-radius:14px;
+      padding:18px;
+      border-radius:16px;
       border:1px solid rgba(215,180,106,.22);
       background:rgba(0,0,0,.25);
     }
-    .big{font-size:22px;margin:0 0 6px;}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;}
     .note{color:var(--muted);line-height:1.75;margin:10px 0 0;font-size:13px;}
     .tiny{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.7;}
     .hr{height:1px;background:rgba(215,180,106,.18);margin:14px 0;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;}
+
+    /* Result styling */
+    .result-title{
+      margin: 0 0 10px;
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(215,180,106,.95);
+    }
+    .moon-name{
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+    .moon-name span{color:var(--gold);}
+    .label{
+      margin: 16px 0 6px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: .08em;
+      font-size: 12px;
+    }
+    .moon-text p{
+      margin: 0 0 6px;
+      line-height: 1.85;
+      color: rgba(243,238,247,.98);
+    }
+    .moon-note{
+      margin: 18px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid rgba(215,180,106,.18);
+      color: rgba(184,169,198,.95);
+      line-height: 1.85;
+      font-size: 13px;
+      text-align: center;
+    }
+    .moon-note span{color: rgba(215,180,106,.95); font-weight: 700;}
+
+    .deep-section{
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(215,180,106,.18);
+      background: rgba(13,11,16,.55);
+    }
+    .deep-section h3{
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: .10em;
+      color: rgba(215,180,106,.95);
+    }
+    .deep-section p{
+      margin: 0 0 10px;
+      line-height: 1.85;
+      color: rgba(243,238,247,.96);
+    }
+    .deep-list{
+      margin: 10px 0 12px;
+      padding-left: 18px;
+      color: rgba(243,238,247,.94);
+      line-height: 1.85;
+    }
+    .deep-note{
+      margin-top: 12px;
+      color: rgba(184,169,198,.95);
+      font-style: italic;
+    }
+
+    /* Side-by-side */
+    .compare-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+    @media (max-width:720px){.compare-grid{grid-template-columns:1fr;}}
+    .card{
+      border-radius:14px;
+      border:1px solid rgba(215,180,106,.18);
+      background:rgba(13,11,16,.45);
+      padding:14px;
+    }
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(215,180,106,.25);
+      color:rgba(215,180,106,.95);
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
     footer{margin-top:18px;color:rgba(184,169,198,.9);font-size:12px;line-height:1.7;}
     a{color:var(--gold);text-decoration:none;}
     a:hover{text-decoration:underline;}
@@ -96,28 +191,29 @@
   <div class="wrap">
     <header>
       <div class="brand">DEEP LOVERS LAB</div>
-      <h1>Moon Sign Calculator</h1>
+      <h1>Moon Sign Horoscope</h1>
       <p class="sub">
-        月は、感情の処理・安心の取り方・反応の癖。<br>
-        生まれた瞬間の「月の星座」を、静かに可視化します。
+        月は、あなたの「反応」と「安心」を守る場所。<br>
+        二人の月星座を並べて、ズレの“意味”と“扱い方”を静かに整えます。
       </p>
     </header>
 
     <section class="panel">
+      <div class="result-title">Your Data</div>
       <div class="grid">
         <div>
-          <label>生年月日（必須）</label>
+          <label>あなたの生年月日（必須）</label>
           <input id="date" type="date" />
         </div>
         <div>
-          <label>出生時刻（任意）</label>
+          <label>あなたの出生時刻（任意）</label>
           <input id="time" type="time" placeholder="12:34" />
         </div>
       </div>
 
       <div class="grid row">
         <div>
-          <label>タイムゾーン</label>
+          <label>あなたのタイムゾーン</label>
           <select id="tz">
             <option value="+09:00" selected>+09:00（日本）</option>
             <option value="+00:00">+00:00（UTC）</option>
@@ -128,50 +224,95 @@
           </select>
         </div>
         <div>
-          <label>表示モード</label>
-          <select id="mode">
-            <option value="tropical" selected>トロピカル（一般的な西洋占星術）</option>
-            <option value="note" disabled>※サイデリアル等は拡張で追加できます</option>
-          </select>
+          <label>　</label>
+          <button id="calc">あなたの月星座を出す</button>
         </div>
       </div>
 
-      <button id="calc">月星座を出す</button>
+      <div class="hr"></div>
 
-      <div id="out" class="result" style="display:none"></div>
+      <div class="result-title">His Data</div>
+      <div class="grid">
+        <div>
+          <label>彼の生年月日（必須）</label>
+          <input id="p_date" type="date" />
+        </div>
+        <div>
+          <label>彼の出生時刻（任意）</label>
+          <input id="p_time" type="time" placeholder="12:34" />
+        </div>
+      </div>
+
+      <div class="grid row">
+        <div>
+          <label>彼のタイムゾーン</label>
+          <select id="p_tz">
+            <option value="+09:00" selected>+09:00（日本）</option>
+            <option value="+00:00">+00:00（UTC）</option>
+            <option value="-05:00">-05:00</option>
+            <option value="-08:00">-08:00</option>
+            <option value="+01:00">+01:00</option>
+            <option value="+10:00">+10:00</option>
+          </select>
+        </div>
+        <div>
+          <label>　</label>
+          <button id="calc_partner">彼の月星座を出す</button>
+        </div>
+      </div>
 
       <div class="tiny">
-        ※出生時刻が不明の場合、月が星座の境界付近にあると結果が前後することがあります（目安：±1星座の可能性）。
+        ※出生時刻が不明の場合、月が星座の境界付近にあると結果が前後することがあります（目安：±1星座の可能性）。<br>
+        ※より精密に読みたい場合は出生時刻（分まで）が推奨です。
       </div>
+
+      <div id="out" class="result" style="display:none"></div>
     </section>
 
     <footer>
       <div class="hr"></div>
-      <div>
-        計算には Astronomy Engine を使用しています。 [oai_citation:1‡Unpkg](https://app.unpkg.com/astronomy-engine%402.1.19/files/README.md)
-      </div>
+      <div>DEEP LOVERS LAB｜Psychology × Astrology</div>
     </footer>
   </div>
 
 <script>
-  // 12 signs (tropical)
-  const SIGNS = [
-    {name:"牡羊座", key:"Aries",     start:0,   vibe:"反応が速い。安心は「今、動ける」ことで保たれる。"},
-    {name:"牡牛座", key:"Taurus",    start:30,  vibe:"安心は「変わらない感触」。五感が落ち着くと心も静まる。"},
-    {name:"双子座", key:"Gemini",    start:60,  vibe:"安心は「言葉の循環」。話せる/考えられると呼吸が戻る。"},
-    {name:"蟹座",   key:"Cancer",    start:90,  vibe:"安心は「守る/守られる」。情が温度として心を支える。"},
-    {name:"獅子座", key:"Leo",       start:120, vibe:"安心は「肯定される光」。自分を誇れると感情は整う。"},
-    {name:"乙女座", key:"Virgo",     start:150, vibe:"安心は「整っていること」。小さな改善が心のノイズを消す。"},
-    {name:"天秤座", key:"Libra",     start:180, vibe:"安心は「対等さ」。関係のバランスが戻ると感情も戻る。"},
-    {name:"蠍座",   key:"Scorpio",   start:210, vibe:"安心は「深さ」。表面ではなく本音に触れたときに落ち着く。"},
-    {name:"射手座", key:"Sagittarius",start:240,vibe:"安心は「見通し」。意味や未来が見えると心が軽くなる。"},
-    {name:"山羊座", key:"Capricorn", start:270, vibe:"安心は「現実の強度」。守れる基盤があるほど感情は安定する。"},
-    {name:"水瓶座", key:"Aquarius",  start:300, vibe:"安心は「自由と距離」。余白があるほど心は澄む。"},
-    {name:"魚座",   key:"Pisces",    start:330, vibe:"安心は「溶ける境界」。優しさや共感で感情がほどけていく。"},
-  ];
+  // ---- Texts: DEEP LOVERS LAB ver. ----
+  const MOON_TEXT = {
+    "牡羊座": { safe:"感情を止めず、すぐに動けること。<br>「今こう感じている」と表現できる自由。", hurt:"反応を待たされること。<br>感情を抑え込まれること。", love:"不安になると、先に動いて確かめにいく。<br>強く見えて、実はとても正直。" },
+    "牡牛座": { safe:"変わらない温度。<br>触れられる実感、同じリズムの時間。", hurt:"急な変化。<br>言葉だけで済まされること。", love:"安心できると深く留まる。<br>不安になると、静かに心を閉じる。" },
+    "双子座": { safe:"言葉が循環していること。<br>気持ちを説明できる余白。", hurt:"説明のない沈黙。<br>「わかって当然」という態度。", love:"不安になると考え続ける。<br>話せなくなると、気持ちが離れたように感じる。" },
+    "蟹座": { safe:"感情をそのまま受け取ってもらえること。<br>守られている感覚。", hurt:"冷たさ。<br>大切にしている気持ちを軽く扱われること。", love:"不安になると、距離を縮めたくなる。<br>深くつながるほど、繊細になる。" },
+    "獅子座": { safe:"存在そのものを肯定されること。<br>「あなたが好き」とはっきり伝えられること。", hurt:"無関心。<br>当たり前のように扱われること。", love:"不安になると、愛を確認したくなる。<br>誇りと甘えが同時に揺れる。" },
+    "乙女座": { safe:"整っている関係。<br>小さな気配りが積み重なっていること。", hurt:"雑に扱われること。<br>努力が見えない状態。", love:"不安になると、自分を調整し始める。<br>気づかれないまま消耗しやすい。" },
+    "天秤座": { safe:"対等さ。<br>感情を共有し合えるバランス。", hurt:"一方的な関係。<br>気持ちの重さが偏ること。", love:"不安になると、距離を測り直す。<br>調和を保とうとして本音を後回しにしがち。" },
+    "蠍座": { safe:"表面ではない深さ。<br>本音に触れられている感覚。", hurt:"軽さ。<br>大切な感情を曖昧にされること。", love:"不安になると、心の奥を試す。<br>一度深く結ぶと、簡単には離れない。" },
+    "射手座": { safe:"見通し。<br>この関係がどこへ向かうかを感じられること。", hurt:"閉塞感。<br>理由のない制限。", love:"不安になると、意味を探しにいく。<br>自由でいたいのは、心が怯えているサインでもある。" },
+    "山羊座": { safe:"現実的な安定。<br>守れる土台があること。", hurt:"無責任さ。<br>感情だけで語られること。", love:"不安になると、感情を抑える。<br>強く見せながら、内側で耐えている。" },
+    "水瓶座": { safe:"自由と距離。<br>理解されているという感覚。", hurt:"感情の押しつけ。<br>コントロールされること。", love:"不安になると、一度離れて考える。<br>冷たく見えて、実はとても敏感。" },
+    "魚座": { safe:"溶け合う感覚。<br>感情を共有できるやさしさ。", hurt:"現実だけを突きつけられること。<br>共感のない正論。", love:"不安になると、境界が曖昧になる。<br>相手の感情まで背負いやすい。" }
+  };
 
+  // ---- Relationship profiles (ズレの扱い方の核) ----
+  // approach: 近づく/距離を取る/整える（中間）
+  // confirm: 言葉/体感（行動）/未来（見通し）
+  // tempo: 速い/一定/慎重
+  const SIGN_PROFILE = {
+    "牡羊座": { approach:"近づく", confirm:"即時", channel:"言葉", tempo:"速い" },
+    "牡牛座": { approach:"一定", confirm:"体感", channel:"行動", tempo:"一定" },
+    "双子座": { approach:"整える", confirm:"言葉", channel:"言葉", tempo:"速い" },
+    "蟹座":   { approach:"近づく", confirm:"体感", channel:"ぬくもり", tempo:"一定" },
+    "獅子座": { approach:"近づく", confirm:"言葉", channel:"肯定", tempo:"速い" },
+    "乙女座": { approach:"整える", confirm:"行動", channel:"配慮", tempo:"慎重" },
+    "天秤座": { approach:"整える", confirm:"言葉", channel:"対話", tempo:"一定" },
+    "蠍座":   { approach:"近づく", confirm:"深さ", channel:"本音", tempo:"慎重" },
+    "射手座": { approach:"距離を取る", confirm:"未来", channel:"見通し", tempo:"速い" },
+    "山羊座": { approach:"距離を取る", confirm:"現実", channel:"責任", tempo:"慎重" },
+    "水瓶座": { approach:"距離を取る", confirm:"理解", channel:"尊重", tempo:"一定" },
+    "魚座":   { approach:"近づく", confirm:"共感", channel:"やさしさ", tempo:"一定" }
+  };
+
+  // ---- Helpers ----
   function parseOffset(tzStr){
-    // "+09:00" -> minutes
     const m = tzStr.match(/^([+-])(\d{2}):(\d{2})$/);
     if(!m) return 0;
     const sign = (m[1] === "-") ? -1 : 1;
@@ -179,76 +320,251 @@
     const mm = parseInt(m[3],10);
     return sign * (hh*60 + mm);
   }
-
   function clamp360(deg){
     let x = deg % 360;
     if(x < 0) x += 360;
     return x;
   }
-
   function signFromLongitude(lon){
-    // 0..360
     const idx = Math.floor(lon / 30) % 12;
     const degInSign = lon - idx*30;
-    return { ...SIGNS[idx], degInSign };
+    const names = ["牡羊座","牡牛座","双子座","蟹座","獅子座","乙女座","天秤座","蠍座","射手座","山羊座","水瓶座","魚座"];
+    return { name: names[idx], degInSign };
   }
-
   function toUtcDate(dateStr, timeStr, tzStr){
-    // dateStr: "YYYY-MM-DD"
-    // timeStr: "HH:MM" or ""
-    // tzStr: "+09:00"
     if(!dateStr) return null;
     const [Y,M,D] = dateStr.split("-").map(Number);
-    let hh = 12, mm = 0; // time not provided -> noon (safer than midnight for boundary bias)
+    let hh = 12, mm = 0; // time not provided -> noon
     if(timeStr){
       [hh,mm] = timeStr.split(":").map(Number);
     }
     const offsetMin = parseOffset(tzStr);
-    // local time -> UTC: subtract offset
     const utcMillis = Date.UTC(Y, M-1, D, hh, mm) - offsetMin*60*1000;
     return new Date(utcMillis);
   }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, (c) => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[c]));
+  }
 
+  function computeMoon(dateStr, timeStr, tzStr){
+    const utcDate = toUtcDate(dateStr, timeStr, tzStr);
+    if(!utcDate) return null;
+
+    const sph = Astronomy.EclipticGeoMoon(utcDate);
+    const lon = clamp360(sph.lon);
+    const s = signFromLongitude(lon);
+
+    const texts = MOON_TEXT[s.name] || { safe:"—", hurt:"—", love:"—" };
+    const timeNote = timeStr
+      ? `入力時刻：<span class="mono">${escapeHtml(timeStr)}</span>（TZ <span class="mono">${escapeHtml(tzStr)}</span>）`
+      : `出生時刻が未入力のため、<b>12:00</b>（TZ <span class="mono">${escapeHtml(tzStr)}</span>）で仮計算しています。境界付近では結果が前後する可能性があります。`;
+
+    return { sign: s.name, lon, degInSign: s.degInSign, texts, timeNote };
+  }
+
+  function renderCard(label, data){
+    return `
+      <div class="card">
+        <div class="pill">${label}</div>
+        <div class="moon-name">🌙 月星座：<span>${data.sign}</span></div>
+        <div class="note">${data.timeNote}</div>
+
+        <div class="moon-text">
+          <p class="label">安心の鍵</p>
+          <p>${data.texts.safe}</p>
+
+          <p class="label">傷つきやすいポイント</p>
+          <p>${data.texts.hurt}</p>
+
+          <p class="label">恋で出る反応</p>
+          <p>${data.texts.love}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // ---- "ズレの扱い方" generator ----
+  function mismatchGuide(youSign, himSign){
+    const Y = SIGN_PROFILE[youSign];
+    const H = SIGN_PROFILE[himSign];
+    if(!Y || !H) return null;
+
+    const gapApproach =
+      (Y.approach === H.approach) ? "同じ方向" :
+      (Y.approach === "近づく" && H.approach === "距離を取る") ? "寄る×離れる" :
+      (Y.approach === "距離を取る" && H.approach === "近づく") ? "離れる×寄る" :
+      "整える×別方向";
+
+    const gapConfirm =
+      (Y.confirm === H.confirm) ? "同じ確認軸" :
+      `${Y.confirm} × ${H.confirm}`;
+
+    const do1 = (() => {
+      // approach pairing suggestions
+      if(gapApproach === "寄る×離れる"){
+        return "片方が近づき、片方が離れるときは「追う／逃げる」になりやすい。<br>いったん<strong>時間を区切って距離を許可</strong>してから、戻る約束を作る。";
+      }
+      if(gapApproach === "離れる×寄る"){
+        return "離れたい側は「冷めた」ではなく<strong>整える時間</strong>の可能性。<br>寄りたい側は、短い確認をもらってから待つ形にする。";
+      }
+      if(gapApproach === "同じ方向"){
+        return "安心の取り方が似ているので、ズレは小さく見える。<br>ただし「言わなくても分かる」に寄ると誤解が増えるので、<strong>小さく言語化</strong>を足す。";
+      }
+      return "ズレは「相性」ではなく、<strong>安心に戻る道が違う</strong>だけ。<br>二人の“戻り方”を先に決めておくと荒れにくい。";
+    })();
+
+    const do2 = (() => {
+      // confirm axis suggestions
+      const yNeed = Y.channel;
+      const hNeed = H.channel;
+      if(Y.confirm === H.confirm){
+        return `確認の軸が同じ。<br><strong>${yNeed}</strong>を丁寧に積むほど、関係は安定しやすい。`;
+      }
+      return `確認の軸が違う。<br>あなたは<strong>${yNeed}</strong>で安心しやすく、彼は<strong>${hNeed}</strong>で安心しやすい。<br>片方だけのやり方に寄せず、<strong>二段構え</strong>にする。`;
+    })();
+
+    const script = (() => {
+      // mini script template
+      if(gapApproach === "寄る×離れる" || gapApproach === "離れる×寄る"){
+        return `例：<br>「今ちょっと不安になってる。<strong>◯時に5分だけ</strong>話せる？ それまでは待つね。」<br>（追いすぎず、消えすぎず、約束で安心を作る）`;
+      }
+      if(Y.channel === "言葉" || H.channel === "言葉"){
+        return `例：<br>「結論だけ聞かせて。<strong>今は大丈夫？</strong>」<br>（長文より“短い確認”が効く）`;
+      }
+      return `例：<br>「今日は一緒にいよう。<strong>言葉がなくても</strong>そばにいるね。」<br>（体感の安心を先に作る）`;
+    })();
+
+    const dont = (() => {
+      if(gapApproach === "寄る×離れる"){
+        return "やらない：<strong>追いLINE／即答の強制</strong>（離れる側の防衛が強くなる）";
+      }
+      if(gapApproach === "離れる×寄る"){
+        return "やらない：<strong>放置で試す</strong>（寄る側の不安が増幅しやすい）";
+      }
+      if(Y.tempo !== H.tempo){
+        return "やらない：<strong>ペースを合わせさせる</strong>（早い／慎重の摩擦が増える）";
+      }
+      return "やらない：<strong>正しさで押す</strong>（安心の回復が遅くなる）";
+    })();
+
+    return { gapApproach, gapConfirm, do1, do2, script, dont };
+  }
+
+  // ---- State + render ----
+  let youData = null;
+  let himData = null;
+
+  function renderAll(){
+    const out = document.getElementById("out");
+    out.style.display = "block";
+
+    // If only one computed, show single card. If both, show compare + guide.
+    const cards = [];
+    if(youData) cards.push(renderCard("Your Moon Sign", youData));
+    if(himData) cards.push(renderCard("His Moon Sign", himData));
+
+    let html = `
+      <div class="result-title">DEEP LOVERS LAB</div>
+      <div class="compare-grid">${cards.join("")}</div>
+      <p class="moon-note">
+        月星座は、性格ではありません。<br>
+        <span>どう扱われると、安心できるか</span>を示しています。
+      </p>
+    `;
+
+    if(youData && himData){
+      const g = mismatchGuide(youData.sign, himData.sign);
+      if(g){
+        html += `
+          <section class="deep-section">
+            <h3>ズレの扱い方（今ここで効く）</h3>
+            <p>
+              二人のズレ：<strong>${g.gapApproach}</strong> ／ 確認軸：<strong>${g.gapConfirm}</strong>
+            </p>
+
+            <ul class="deep-list">
+              <li>${g.do1}</li>
+              <li>${g.do2}</li>
+            </ul>
+
+            <p><strong>言い方テンプレ</strong><br>${g.script}</p>
+            <p class="deep-note">${g.dont}</p>
+          </section>
+
+          <section class="deep-section">
+            <h3>彼の月星座を知ると、何がわかる？</h3>
+            <p>
+              彼の態度が変わったように感じるとき、<br>
+              それは気持ちが冷めたからとは限りません。
+            </p>
+            <p>
+              月星座は、<strong>不安になったときに無意識で出る反応</strong>を表します。
+            </p>
+            <ul class="deep-list">
+              <li>なぜ距離を取るのか</li>
+              <li>なぜ言葉が減るのか</li>
+              <li>なぜ急に優しくなるのか</li>
+            </ul>
+            <p class="deep-note">
+              「ズレ」＝終わりではなく、扱い方が分かるだけで関係は荒れなくなります。
+            </p>
+          </section>
+
+          <div class="hr"></div>
+          <div class="note">
+            あなた：月の黄経 <span class="mono">${youData.lon.toFixed(2)}°</span>（星座内 <span class="mono">${youData.degInSign.toFixed(2)}°</span>）<br>
+            彼：月の黄経 <span class="mono">${himData.lon.toFixed(2)}°</span>（星座内 <span class="mono">${himData.degInSign.toFixed(2)}°</span>）
+          </div>
+        `;
+      }
+    } else {
+      html += `
+        <section class="deep-section">
+          <h3>ヒント</h3>
+          <p class="deep-note">
+            もう一人も入力すると、二人を並べて「ズレの扱い方」まで表示します。
+          </p>
+        </section>
+      `;
+    }
+
+    out.innerHTML = html;
+  }
+
+  // ---- Button events ----
   document.getElementById("calc").addEventListener("click", () => {
     const dateStr = document.getElementById("date").value;
     const timeStr = document.getElementById("time").value;
     const tzStr   = document.getElementById("tz").value;
 
-    const utcDate = toUtcDate(dateStr, timeStr, tzStr);
-    const out = document.getElementById("out");
-
-    if(!utcDate){
+    const data = computeMoon(dateStr, timeStr, tzStr);
+    if(!data){
+      const out = document.getElementById("out");
       out.style.display = "block";
-      out.innerHTML = `<div class="big">日付を入れてね</div><div class="note">生年月日（必須）が空です。</div>`;
+      out.innerHTML = `<div class="note">あなたの生年月日（必須）が空です。</div>`;
       return;
     }
-
-    // Use EclipticGeoMoon(date) -> Spherical (lon in degrees) in true ecliptic of date
-    // From library docs/types: EclipticGeoMoon returns spherical ecliptic position of the Moon. [oai_citation:2‡Unpkg](https://app.unpkg.com/astronomy-engine%402.1.19/files/astronomy.d.ts)
-    const sph = Astronomy.EclipticGeoMoon(utcDate);
-    const lon = clamp360(sph.lon);
-
-    const s = signFromLongitude(lon);
-
-    const timeNote = timeStr
-      ? `入力時刻：<span class="mono">${timeStr}</span>（TZ <span class="mono">${tzStr}</span>）`
-      : `出生時刻が未入力のため、<b>12:00</b>（TZ <span class="mono">${tzStr}</span>）で仮計算しています。境界付近では結果が前後する可能性があります。`;
-
-    out.style.display = "block";
-    out.innerHTML = `
-      <div class="big">あなたの月星座：<span style="color:var(--gold)">${s.name}</span></div>
-      <div class="note">${timeNote}</div>
-      <div class="hr"></div>
-      <div class="note">
-        月の黄経：<span class="mono">${lon.toFixed(2)}°</span><br>
-        星座内の度数：<span class="mono">${s.degInSign.toFixed(2)}°</span>（${s.name} 0°〜29.99°）
-      </div>
-      <div class="hr"></div>
-      <div class="note"><b>Moon tone</b><br>${s.vibe}</div>
-    `;
+    youData = data;
+    renderAll();
   });
 
-  // set default date example (optional): do nothing
+  document.getElementById("calc_partner").addEventListener("click", () => {
+    const dateStr = document.getElementById("p_date").value;
+    const timeStr = document.getElementById("p_time").value;
+    const tzStr   = document.getElementById("p_tz").value;
+
+    const data = computeMoon(dateStr, timeStr, tzStr);
+    if(!data){
+      const out = document.getElementById("out");
+      out.style.display = "block";
+      out.innerHTML = `<div class="note">彼の生年月日（必須）が空です。</div>`;
+      return;
+    }
+    himData = data;
+    renderAll();
+  });
 </script>
 </body>
 </html>
